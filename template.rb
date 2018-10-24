@@ -55,6 +55,7 @@ def apply_template!
 
   template "rubocop.yml.tt", ".rubocop.yml"
   run_rubocop_autocorrections
+  install_rspec
 
   unless any_local_git_commits?
     git add: "-A ."
@@ -201,6 +202,10 @@ end
 
 def run_rubocop_autocorrections
   run_with_clean_bundler_env "bin/rubocop -a --fail-level A > /dev/null || true"
+end
+
+def install_rspec
+  run_with_clean_bundler_env "bin/rails g rspec:install"
 end
 
 def create_initial_migration

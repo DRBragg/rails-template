@@ -1,19 +1,10 @@
+# config valid for current version and patch releases of Capistrano
+lock "~> 3.11.0"
+
 set :application, "<%= app_name %>"
 set :repo_url, "<%= git_repo_specified? ? git_repo_url : "TODO" %>"
 
-# Project-specific overrides go here.
-# For list of variables that can be customized, see:
-# https://github.com/mattbrictson/capistrano-mb/blob/master/lib/capistrano/tasks/defaults.rake
-
-fetch(:mb_recipes) << "sidekiq"
-fetch(:mb_aptitude_packages)["redis-server@ppa:chris-lea/redis-server"] = :redis
-
-set :mb_dotenv_keys, %w(
-  rails_secret_key_base
-  postmark_api_key
-  redis_url
-  sidekiq_web_username
-  sidekiq_web_password
-)
+append :linked_files, "config/database.yml", "config/secrets.yml"
+append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
 
 after "deploy:published", "bundler:clean"
