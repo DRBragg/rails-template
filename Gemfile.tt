@@ -41,7 +41,6 @@ group :development do
   gem "net-ssh", ">= 5.0.0", require: false
   gem "rack-livereload"
   gem "rubocop", ">= 0.58.0", require: false
-  gem "simplecov", require: false
   gem "spring"
   gem "sshkit", "~> 1.16", require: false
   gem "spring-watcher-listen"<%= gemfile_requirement("spring-watcher-listen") %>
@@ -60,7 +59,6 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'shoulda'
   gem 'valid_attribute'
-  gem 'dotenv-rails'
   gem 'rails-controller-testing'
   gem 'simplecov', require: false
 end
