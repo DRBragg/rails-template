@@ -19,7 +19,6 @@ def apply_template!
   template "example.env.tt"
   copy_file "editorconfig", ".editorconfig"
   copy_file "gitignore", ".gitignore", force: true
-  copy_file "overcommit.yml", ".overcommit.yml"
   template "ruby-version.tt", ".ruby-version", force: true
   copy_file "simplecov", ".simplecov"
 
@@ -31,7 +30,6 @@ def apply_template!
   apply "config.ru.rb"
   apply "app/template.rb"
   apply "bin/template.rb"
-  apply "circleci/template.rb"
   apply "config/template.rb"
   apply "doc/template.rb"
   apply "lib/template.rb"
