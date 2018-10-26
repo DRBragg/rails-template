@@ -4,6 +4,8 @@ lock "~> 3.11.0"
 set :application, "<%= app_name %>"
 set :repo_url, "<%= git_repo_specified? ? git_repo_url : "TODO" %>"
 
+set :deploy_to, "/home/deploy/<%= app_name %>"
+
 append :linked_files, "config/database.yml", "config/secrets.yml"
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
 

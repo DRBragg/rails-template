@@ -21,8 +21,42 @@ module NavbarHelper
       end
     end
 
-    content_tag(:li, class: "nav-link #{'active' if active}") do
-      link_to(label, path, options)
+    content_tag(:li, class: "nav-item") do
+      link_to(label, path, class: "nav-link #{'active' if active}")
+    end
+  end
+
+  def dropdown_link_to(label, path, options={})
+    active_when = options.delete(:active_when) { Hash.new }
+    active = active_when.all? do |key, value|
+      case value
+      when Regexp
+        params[key].to_s =~ value
+      else
+        params[key].to_s == value
+      end
+    end
+
+    link_to(label, path, class: "dropdown-item #{'active' if active}")
+  end
+
+  def breadcrumb_link_to(label, path, options={})
+    active_when = options.delete(:active_when) { Hash.new }
+    active = active_when.all? do |key, value|
+      case value
+      when Regexp
+        params[key].to_s =~ value
+      else
+        params[key].to_s == value
+      end
+    end
+
+    content_tag(:li, class: "breadcrumb-item #{'active' if active}") do
+      if active
+        label
+      else
+        link_to(label, path)
+      end
     end
   end
 end
